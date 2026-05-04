@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://h6r54aglffbg"]
+
+[ext_resource type="FontFile" uid="uid://wjydp8y74fbi" path="res://assets/JetBrainsMonoNLNerdFont-Regular.ttf" id="1_hatg2"]
+
+[resource]
+default_font = ExtResource("1_hatg2")

@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bg5k1jg1tgd7e"]
+
+[ext_resource type="Script" uid="uid://bok3tycu065nt" path="res://night/root.gd" id="1_tl7ee"]
+[ext_resource type="Texture2D" uid="uid://de78msa22fdxo" path="res://assets/anims/bonnie.png" id="2_8nyek"]
+[ext_resource type="Texture2D" uid="uid://mavt62s3elqk" path="res://assets/environment/office.png" id="3_74ekm"]
+[ext_resource type="Script" uid="uid://q383u5eoodkg" path="res://night/freddy/feddy.gd" id="4_q05mc"]
+[ext_resource type="Texture2D" uid="uid://dndx2e0i6enpb" path="res://assets/anims/freddle.png" id="5_qprml"]
+[ext_resource type="FontFile" uid="uid://wjydp8y74fbi" path="res://assets/JetBrainsMonoNLNerdFont-Regular.ttf" id="8_ueeae"]
+[ext_resource type="Script" uid="uid://dkw1ojcqtrmld" path="res://night/ui/button.gd" id="9_0mj8d"]
+
+[sub_resource type="Theme" id="Theme_q6r6c"]
+default_font = ExtResource("8_ueeae")
+default_font_size = 17
+
+[node name="Main" type="Node2D" unique_id=1737141755]
+script = ExtResource("1_tl7ee")
+
+[node name="Office" type="Node2D" parent="." unique_id=1720355291]
+position = Vector2(239, 318.00003)
+scale = Vector2(11, 11)
+
+[node name="Sprite2D" type="Sprite2D" parent="Office" unique_id=2139740239]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_8nyek")
+
+[node name="TextureRect" type="TextureRect" parent="Office" unique_id=732930722]
+offset_left = -21.727272
+offset_top = -28.909092
+offset_right = 82.99999
+offset_bottom = 29.999992
+texture = ExtResource("3_74ekm")
+
+[node name="Feddy" type="Node" parent="Office" unique_id=1870638168]
+script = ExtResource("4_q05mc")
+
+[node name="Freddles" type="Node" parent="Office/Feddy" unique_id=217137809]
+
+[node name="Freddle1" type="Sprite2D" parent="Office/Feddy/Freddles" unique_id=546416559]
+visible = false
+position = Vector2(57, 353)
+scale = Vector2(12, 12)
+texture = ExtResource("5_qprml")
+
+[node name="Freddle2" type="Sprite2D" parent="Office/Feddy/Freddles" unique_id=5031484]
+visible = false
+position = Vector2(371, 155)
+scale = Vector2(12, 12)
+texture = ExtResource("5_qprml")
+
+[node name="Freddle3" type="Sprite2D" parent="Office/Feddy/Freddles" unique_id=1413209044]
+visible = false
+position = Vector2(697, 353)
+scale = Vector2(12, 12)
+texture = ExtResource("5_qprml")
+
+[node name="Freddle4" type="Sprite2D" parent="Office/Feddy/Freddles" unique_id=1105063970]
+visible = false
+position = Vector2(515, 299)
+scale = Vector2(12, 12)
+texture = ExtResource("5_qprml")
+
+[node name="Freddle5" type="Sprite2D" parent="Office/Feddy/Freddles" unique_id=486494938]
+visible = false
+position = Vector2(239, 318)
+scale = Vector2(12, 12)
+texture = ExtResource("5_qprml")
+
+[node name="Freddle6" type="Sprite2D" parent="Office/Feddy/Freddles" unique_id=14577917]
+visible = false
+position = Vector2(201, 86.00001)
+scale = Vector2(12, 12)
+texture = ExtResource("5_qprml")
+
+[node name="Freddle7" type="Sprite2D" parent="Office/Feddy/Freddles" unique_id=173521736]
+visible = false
+position = Vector2(809.00006, 230.00002)
+scale = Vector2(12, 12)
+texture = ExtResource("5_qprml")
+
+[node name="Freddle8" type="Sprite2D" parent="Office/Feddy/Freddles" unique_id=1467123937]
+visible = false
+position = Vector2(926.00006, 110)
+scale = Vector2(12, 12)
+texture = ExtResource("5_qprml")
+
+[node name="FreddleTimer" type="Timer" parent="Office/Feddy" unique_id=346843335]
+wait_time = 7.0
+autostart = true
+
+[node name="FreddleRemovalTimer" type="Timer" parent="Office/Feddy" unique_id=1052799017]
+wait_time = 2.0
+autostart = true
+
+[node name="Cams" type="Node2D" parent="." unique_id=1795283825]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1797238445]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1761168213]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_q6r6c")
+
+[node name="CamButton" type="Button" parent="CanvasLayer/Control" unique_id=1978938981]
+visibility_layer = 524288
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -246.0
+offset_top = -58.0
+offset_right = -19.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Camera System"
+script = ExtResource("9_0mj8d")
+
+[node name="TempTimer" type="Timer" parent="." unique_id=1294139164]
+autostart = true
+
+[connection signal="timeout" from="Office/Feddy/FreddleTimer" to="Office/Feddy" method="_on_freddle_timer_timeout"]
+[connection signal="timeout" from="Office/Feddy/FreddleRemovalTimer" to="Office/Feddy" method="_on_freddle_removal_timer_timeout"]
+[connection signal="timeout" from="TempTimer" to="." method="_on_temp_timer_timeout"]

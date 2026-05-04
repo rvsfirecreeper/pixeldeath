@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bv7jf8gjnao1l"]
+
+[ext_resource type="Script" uid="uid://be2r7py2pssfl" path="res://death/death.gd" id="1_nmneb"]
+[ext_resource type="Theme" uid="uid://h6r54aglffbg" path="res://assets/pixeldeath.tres" id="2_ah1lf"]
+
+[node name="Death" type="Node2D" unique_id=672337787]
+script = ExtResource("1_nmneb")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1793553088]
+position = Vector2(2892, 564)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-2892, 84, -2892, -564, -1740, -564, -1740, 84)
+uv = PackedVector2Array(-2841.1533, 749.87787, -2873.579, -564.8391, -15.597656, -591.0591, 141.72266, 824.8218)
+
+[node name="Message" type="RichTextLabel" parent="." unique_id=198244574]
+offset_left = 432.0
+offset_top = 260.0
+offset_right = 720.0
+offset_bottom = 388.0
+theme = ExtResource("2_ah1lf")
+horizontal_alignment = 1
+vertical_alignment = 1
