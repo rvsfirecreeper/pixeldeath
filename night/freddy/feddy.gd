@@ -52,7 +52,16 @@ func _on_freddle_removal_timer_timeout() -> void:
 func freddle_render() -> void:
 		for i in range(1, 9):
 			var freddle = get_node("Freddles/Freddle" + str(i))
-			if i <= freddles:
+			if i <= freddles && visible:
 				freddle.visible = true
 			else:
 				freddle.visible = false
+
+
+func _on_main_not_office() -> void:
+	visible = false # Replace with function body.
+	freddle_render()
+
+func _on_main_office() -> void:
+	visible = true # Replace with function body.
+	freddle_render()

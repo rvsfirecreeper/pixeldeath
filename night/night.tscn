@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://de78msa22fdxo" path="res://assets/anims/bonnie.png" id="2_8nyek"]
 [ext_resource type="Texture2D" uid="uid://mavt62s3elqk" path="res://assets/environment/office.png" id="3_74ekm"]
 [ext_resource type="Script" uid="uid://q383u5eoodkg" path="res://night/freddy/feddy.gd" id="4_q05mc"]
+[ext_resource type="Script" uid="uid://d1cfjxn8yiwp3" path="res://night/bonnie/bonnie.gd" id="5_a6aln"]
 [ext_resource type="Texture2D" uid="uid://dndx2e0i6enpb" path="res://assets/anims/freddle.png" id="5_qprml"]
+[ext_resource type="AudioStream" uid="uid://drhhbuvy3o478" path="res://assets/anims/bonnie.mp3" id="6_tl7ee"]
 [ext_resource type="FontFile" uid="uid://wjydp8y74fbi" path="res://assets/JetBrainsMonoNLNerdFont-Regular.ttf" id="8_ueeae"]
 [ext_resource type="Script" uid="uid://dkw1ojcqtrmld" path="res://night/ui/button.gd" id="9_0mj8d"]
 
@@ -19,14 +21,10 @@ script = ExtResource("1_tl7ee")
 position = Vector2(239, 318.00003)
 scale = Vector2(11, 11)
 
-[node name="Sprite2D" type="Sprite2D" parent="Office" unique_id=2139740239]
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("2_8nyek")
-
 [node name="TextureRect" type="TextureRect" parent="Office" unique_id=732930722]
 offset_left = -21.727272
-offset_top = -28.909092
-offset_right = 82.99999
+offset_top = -28.909096
+offset_right = 82.81818
 offset_bottom = 29.999992
 texture = ExtResource("3_74ekm")
 
@@ -91,6 +89,23 @@ autostart = true
 wait_time = 2.0
 autostart = true
 
+[node name="Bonnie" type="Node" parent="Office" unique_id=1422535902]
+script = ExtResource("5_a6aln")
+
+[node name="BonnieAudio" type="AudioStreamPlayer2D" parent="Office/Bonnie" unique_id=46190670]
+position = Vector2(239, 318.00003)
+scale = Vector2(10.999999, 10.999999)
+stream = ExtResource("6_tl7ee")
+
+[node name="BonnieSprite" type="Sprite2D" parent="Office/Bonnie" unique_id=852583571]
+position = Vector2(370.99997, 318)
+scale = Vector2(11, 11)
+texture = ExtResource("2_8nyek")
+
+[node name="BonnieTimer" type="Timer" parent="Office/Bonnie" unique_id=1851690785]
+wait_time = 10.0
+autostart = true
+
 [node name="Cams" type="Node2D" parent="." unique_id=1795283825]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1797238445]
@@ -125,6 +140,11 @@ script = ExtResource("9_0mj8d")
 [node name="TempTimer" type="Timer" parent="." unique_id=1294139164]
 autostart = true
 
+[connection signal="not_office" from="." to="Office/Feddy" method="_on_main_not_office"]
+[connection signal="not_office" from="." to="Office/Bonnie" method="_on_main_not_office"]
+[connection signal="office" from="." to="Office/Feddy" method="_on_main_office"]
+[connection signal="office" from="." to="Office/Bonnie" method="_on_main_office"]
 [connection signal="timeout" from="Office/Feddy/FreddleTimer" to="Office/Feddy" method="_on_freddle_timer_timeout"]
 [connection signal="timeout" from="Office/Feddy/FreddleRemovalTimer" to="Office/Feddy" method="_on_freddle_removal_timer_timeout"]
+[connection signal="timeout" from="Office/Bonnie/BonnieTimer" to="Office/Bonnie" method="_on_interval"]
 [connection signal="timeout" from="TempTimer" to="." method="_on_temp_timer_timeout"]
